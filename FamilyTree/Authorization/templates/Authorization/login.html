@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{%block title%}
+
+Login Form
+
+{% endblock %}
+
+{%block content%}
+    <span>Форма аутентификации</span>
+        <form action = "{%url 'Login'%}" method="post">
+        {% csrf_token %}
+        {% for item in form%}
+            <br>
+            {{item.label}}
+            {{item}}
+            <br>
+        {% endfor %}
+        <br>
+        <button type="submit" style = 'width: 100px; height: 40px'>Send</button>
+    </form>
+    <script type="text/javascript" src="{% static 'js/formHandle.js'%}"></script>
+
+{%endblock%}
+
