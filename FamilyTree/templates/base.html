@@ -3,8 +3,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="preconnect" href="https://rsms.me/">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link rel='stylesheet' href="{% static 'css/style.css' %}"/>
-    
+
     <meta charset="UTF-8">
     <meta name="google-signin-client_id" content="250294291683-jn0uusc8ki1ac4vb2ls6ue1q6eshran3.apps.googleusercontent.com">
     <title>
@@ -15,34 +17,58 @@
 </head>
 <body class='body'>
     <div class = 'header'>
+        <a class ='brand'>Семейное дерево</a>
+        <div class="header_menu">
+            <a class="menu_item">Примеры</a>
+            <a class="menu_item">Обратная связь</a>
+            <a class="menu_item">О нас</a>
+        </div>
+        <div class="lang-dropdown-menu">
+            <button class="langBtn">
+                <img src="{% static 'images/lang.png' %}" height="21px" width="21px">
+            </button>
+            <img src="{% static 'images/select_lang.png' %}" height="19px" width="22px">
+        </button>
 
-        {% if user.is_authenticated%}
+            <ul class="dropdown-content">
+
+            </ul>
+        </div>
+        <!-- {% if user.is_authenticated%}
             <span>{{user.nickname}}</span>
             <form id="logout" method="post" action="/logout/">
                 {% csrf_token %}
                 <button type="submit">Выйти</button>
             </form> 
-        {% else %}
-            <span id="UserNickname">Вы не авторизованы</span>
-            <a href="/login">Войти</a>
-            <a href="/registration">Зарегестрироваться</a>
-
-            <script src="https://accounts.google.com/gsi/client" async defer></script>
+        {% else %} -->
+            <!-- <span id="UserNickname">Вы не авторизованы</span> -->
+        <div class = 'login' id = 'User'>    
+            <a class = 'login-btn' href='/login'>
+            <span>Вход</span>
+            <img src="{% static 'images/login.png' %}" height="69px" width="69px">
+            </a>
+        </div>    
             
-            <div id="g_id_onload"
+            <!-- <a href="/login">Войти</a> -->
+            <!-- <a href="/registration">Зарегестрироваться</a> -->
+
+
+        <script src="https://accounts.google.com/gsi/client" async defer></script>
+            
+            <!-- <div id="g_id_onload"
                 data-client_id="250294291683-jn0uusc8ki1ac4vb2ls6ue1q6eshran3.apps.googleusercontent.com"
                 data-callback="handleCredentialResponse">
             </div>
             
-            <div class="g_id_signin" data-type="standard"></div>
+            <div class="g_id_signin" data-type="standard"></div> -->
     
-
+        
 
     <script>
 
     function handleCredentialResponse(CredentialResponse) {
     // Обработка ответа от сервера после аутентификации
-              console.log(CredentialResponse.credential);
+            //   console.log(CredentialResponse.credential);
               fetch('http://localhost:8000/oauth/auth',{
                 method: 'POST',
                 headers: {'Content-Type': 'application/json; charset=UTF-8 '},
@@ -51,15 +77,26 @@
                 })
               })
               .then(res => res.json())
-              .then(data => console.log('ID:' + data.user_id + '\nToken: ' + data.access_token))
+              .then(data => {
+
+                    localStorage.setItem('access_token', data.access_token)
+                    localStorage.setItem('refresh_token', data.refresh_token)
+                }
+                )
         }
     </script>
             
         {% endif %}
     </div>
-    {%block content%}
+    <div class = 'content'>
+            {%block content%}
 
-    {%endblock%}
+            {%endblock%}
+        <div class="image--container">
+            <img src="{% static 'images/Tree.png' %}" height="281px" width="249px"></img>
+        </div>
+    </div>
+   
 </body>
     <script type="text/javascript" src="{% static 'js/check_auth.js'%}"></script>
     <script type="text/javascript" src="{% static 'js/onload.js'%}"></script>

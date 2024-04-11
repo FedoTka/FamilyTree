@@ -1,0 +1,70 @@
+.body{
+
+}
+
+.brand{
+    font-family: Inter;
+    font-weight: 900;
+    font-size: 32px;
+    color: black;
+}
+
+.header{ 
+    display: flex;
+    gap:75px;
+    padding-left: 75px;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+}
+
+.content{
+    display: flex;
+    padding: 75px;
+    justify-content: right;
+}
+
+
+.lang-dropdown-menu{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2px;
+    flex-direction: row;
+}
+
+.login{
+    display: flex;
+    gap: 5px;
+    position: absolute;
+    right: 75px;
+    justify-content: right;
+}
+
+.login-btn{
+    display: flex;
+    gap: 21px;
+    flex-direction: row;
+    align-items: center;
+    /* just; */
+    font-family: Inter;
+    font-size: 24px;
+    color: black;
+    text-decoration: none;
+}
+
+
+.langBtn{
+    background-color: white;
+    border: None;
+}
+
+.header_menu{
+    display: flex;
+    gap: 35px;
+}
+
+.menu_item{
+    font-family: Inter;
+    font-size: 20px;
+}

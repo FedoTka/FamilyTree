@@ -4,6 +4,7 @@ from rest_framework.decorators import api_view
 from .. import serializers
 from rest_framework.exceptions import AuthenticationFailed
 from ..services import google
+
 def google_login(request):
     """Страница входа через google"""
 

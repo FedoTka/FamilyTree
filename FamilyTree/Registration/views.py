@@ -15,12 +15,15 @@ class Register(View):
     def get(self, request):
         form = UserForm()
         return render(request, 'Registration/registration_form.html', {'form': form})
-
     def post(self, request):
         form = UserForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save(commit=False)
+            password = form.cleaned_data['password']
+            user.set_password(password)
+            user.save()
             return redirect('/')
+
 
 class UserProfileView(APIView):
     permission_classes = [IsAuthenticated]

@@ -17,6 +17,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = "nickname"
     REQUIRED_FIELDS = ["email"]
 
+
     def __str__(self):
         return self.nickname
 

@@ -1,26 +1,59 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{%block title%}
 
+{%block title%}
 Login Form
 
 {% endblock %}
 
 {%block content%}
-    <span>Форма аутентификации</span>
-        <form action = "{%url 'Login'%}" method="post">
-        {% csrf_token %}
-        {% for item in form%}
-            <br>
-            {{item.label}}
-            {{item}}
-            <br>
-        {% endfor %}
-        <br>
-        <button type="submit" style = 'width: 100px; height: 40px'>Send</button>
-    </form>
+    <div class="auth-container">
+    <span>Login</span>
+        <div class="auth">
+            <div class="login-container">
+                <form action = "{%url 'Login'%}" method="post">
+                    {% csrf_token %}
+                    {% for item in form%}
+                        <br>
+                        {{item}}
+                        <br>
+                    {% endfor %}
+                    <br>
+                    <button type="submit" style = 'width: 100px; height: 40px'>Отправить</button>
+                </form>
+            </div>
+
+            <ul class="oauth-container">
+                <li class = "oauth-item">
+                    <span>Google</span>
+                    <script src="https://accounts.google.com/gsi/client" async defer></script>
+            
+                    <div google-btn id="g_id_onload"
+                        data-client_id="250294291683-jn0uusc8ki1ac4vb2ls6ue1q6eshran3.apps.googleusercontent.com"
+                        data-callback="handleCredentialResponse">
+                    </div>
+
+                
+                    <div class="g_id_signin google-btn" id = 'googlehref' data-type="standard"></div>
+                </li>
+                <li>
+                    <a class='oauth-item' href="#">VK</a>
+                </li>
+
+                <li>
+                    <a class='oauth-item' href="#">OK</a>
+                </li>
+
+            </ul>
+        </div>
+       
+    </div>
+
     <script type="text/javascript" src="{% static 'js/formHandle.js'%}"></script>
+    <!-- <script type="text/javascript" src="{% static 'js/checkGoogle.js'%}"></script> -->
+    <link rel='stylesheet' href="{% static 'css/auth.css' %}"/>
 
 {%endblock%}
+
 
